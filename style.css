@@ -1,0 +1,294 @@
+/* Reset الأنماط العامة */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* إعدادات الصفحة */
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #F1EFEC;
+  color: #030303;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* أنماط الأزرار */
+#add_btn, #edit_btn, #delete_btn, #clear_btn {
+  border:  0 solid black;
+  padding: 10px 20px;
+  color: black;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 8px;
+
+
+  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.128);
+  
+}
+
+/* #add_btn {
+  background-color: #69e26d;
+}
+
+#edit_btn {
+  background-color: #68d9ff;
+}
+
+#delete_btn {
+  background-color: #f44336;
+}
+
+#clear_btn {
+  background-color: #f86d63;
+} */
+
+#add_btn:hover, #edit_btn:hover, #delete_btn:hover, #clear_btn:hover, .delete-item:hover {
+  box-shadow: 1px 2px 1px 1px rgba(1, 1, 1, 0.042);
+  
+}
+
+/* أنماط قائمة المهام */
+#todo_list {
+  background-color: #D4C9BE;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+#todo_list h2 { /*the title of the tasks list*/
+  text-align: center;
+  padding: 10px;
+  color: #030303;
+}
+
+/* أنماط العناصر الفردية في القائمة */
+li {
+  background-color: #123458;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 5px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+
+}
+
+.checkbox {
+  
+  margin-left: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4CAF50; /* لون الحدود */
+  border-radius: 50px;
+  background-color: #4CAF50; /* لون الخلفية عند التحديد */
+
+}
+
+.checkbox:checked {
+  background-color: #4CAF50; /* لون الخلفية عند التحديد */
+  border-radius: 5px;
+  cursor: pointer;
+  animation: checkmark 0.3s ease-in-out; /* تطبيق الأنيميشن */
+}
+
+/*the animation for checkbox*/
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* أنماط قائمة العناصر */
+#item_list { /*  the background of the list*/
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  width: 80%;
+}
+
+/* أنماط زر الحذف داخل العناصر */
+.deleteIcon_listItem {
+    border: none;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: transparent; /* جعل الخلفية شفافة */
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); /* اللون الأبيض */
+    transition: all 0.3s ease; /* إضافة تأثير الانتقال */
+}
+
+
+.deleteBtn_listItem {
+
+    padding: 10px;
+    margin-left: auto;
+    background-color: transparent; /* جعل خلفية الزر شفافة */
+    border: none;
+    cursor: pointer;
+}
+
+.deleteBtn_listItem:hover .deleteIcon_listItem {
+
+    filter: invert(16%) sepia(94%) saturate(5000%) hue-rotate(-5deg) brightness(90%) contrast(100%); /* اللون الأحمر */
+    animation: moveDiagonal 0.5s ease-in-out ; /* تطبيق الأنيميشن */
+}
+
+/* تعريف الأنيميشن */
+@keyframes moveDiagonal {
+    0% {
+        transform: rotate(0deg); /* الوضع الافتراضي */
+    }
+    25% {
+        transform: rotate(15deg); /* الدوران 15 درجة إلى اليمين */
+    }
+    50% {
+        transform: rotate(0deg); /* العودة للوضع الافتراضي */
+    }
+    75% {
+        transform: rotate(-15deg); /* الدوران 15 درجة إلى اليسار */
+    }
+    100% {
+        transform: rotate(0deg); /* العودة للوضع الافتراضي */
+    }
+}
+
+.editIcon_listItem {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: transparent; /* جعل الخلفية شفافة */
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); /* اللون الأبيض */
+    transition: all 0.3s ease; /* إضافة تأثير الانتقال */
+}
+.editBtn_listItem {
+    padding: 10px;
+    background-color: transparent; /* جعل خلفية الزر شفافة */
+    border: none;
+    cursor: pointer;
+}
+.editBtn_listItem:hover .editIcon_listItem {
+    filter: invert(48%) sepia(91%) saturate(500%) hue-rotate(90deg) brightness(90%) contrast(100%); /* اللون الأخضر */
+    animation: moveDiagonal 0.5s ease-in-out ; /* تطبيق الأنيميشن */
+}
+
+
+#todo_input
+{
+    width: 50%;
+    padding-left: 20px;
+    padding: 10px 20px;
+    margin: 10px auto;
+    border-radius: 20px;
+    border: none;
+    background-color: #D4C9BE;
+    color: #123458;
+    display: block;
+
+    outline: none;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 50px;
+}
+.button-group
+{
+    justify-content: center;
+    display: flex;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.128);
+    
+    
+}
+
+footer {
+  padding: 20px;
+  background-color: #D4C9BE;
+  color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.email-text
+{
+  display: inline-block;
+  font-size: 19px;
+
+  margin-right: 40%;
+
+
+
+}
+.email-icon
+{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  transition: all 0.3s ease; /* إضافة تأثير الانتقال */ 
+  position: relative;
+  top: 8px; /* ضبط الموضع العمودي */
+}
+.email-icon:hover {
+  animation: emailIconRotate 1.5s ease; /* زيادة مدة الأنيميشن إلى 1.5 ثانية */
+}
+
+@keyframes emailIconRotate {
+ 
+  0% {
+    transform: rotate(0deg); /* الوضع الافتراضي */
+  }
+  25% {
+    transform: rotate(15deg); /* الدوران 15 درجة إلى اليمين */
+  }
+  50% {
+    transform: rotate(-15deg); /* الدوران 15 درجة إلى اليسار */
+  }
+  75% {
+    transform: rotate(-15deg); /* الدوران 15 درجة إلى اليسار */
+  }
+  100% {
+    transform: rotate(0deg); /* العودة للوضع الافتراضي */
+  }
+  
+}
+
+.date-icon
+{
+  display: inline-block;
+
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  transition: all 0.3s ease; /* إضافة تأثير الانتقال */
+  position: absolute;
+  right: 115px; /* ضبط الموضع الأفقي */
+  bottom: 21px; /* ضبط الموضع العمودي */
+}
+.date-icon:hover {
+  animation: emailIconRotate 1.5s ease; /* زيادة مدة الأنيميشن إلى 1.5 ثانية */
+}
+
+.date-text
+{
+  display: inline-block;
+  font-size: 19px;
+  right: 20px;
+  bottom: 25px; /* ضبط الموضع العمودي */
+  position: absolute;
+ 
+}
