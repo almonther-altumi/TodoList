@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo list app</title>
+    <title>تطبيق المهام</title>
     
     <link rel="stylesheet" href="style.css">
 
@@ -14,34 +14,34 @@
 
     <main class="app-container">
         <header>
-            <h1>My Todo List</h1>
-            <p id="motivational-words" class="muted">Don't forget your goal</p>
+            <h1>قائمة المهام</h1>
+            <p id="motivational-words" class="muted">لا تنس هدفك</p>
         </header>
 
         <form id="todo_form" class="todo-form" onsubmit="return false;">
             <div>
                 <img src="" alt="" srcset="">
             </div>
-            <input type="search" id="search_input" placeholder="Search tasks..." aria-label="Search todos" autocomplete="off">
-            <input type="text" id="todo_input" placeholder="Add a new todo" aria-label="New todo" autocomplete="off">
+            <input type="search" id="search_input" placeholder="ابحث عن مهمة..." aria-label="ابحث عن مهمة" autocomplete="off">
+            <input type="text" id="todo_input" placeholder="أضف مهمة جديدة" aria-label="مهمة جديدة" autocomplete="off">
 
-            <input type="date" id="due_date" title="Due date" aria-label="Due date" />
+            <input type="date" id="due_date" title="تاريخ الاستحقاق" aria-label="Due date" />
 
-            <select class="priority" id="priority_select" title="Priority" aria-label="Priority">
-                <option value="medium">Priority: Medium</option>
-                <option value="high">Priority: High</option>
-                <option value="low">Priority: Low</option>
+            <select class="priority" id="priority_select" title="الأولوية" aria-label="Priority">
+                <option value="medium">الأولوية: متوسط</option>
+                <option value="high">عالي</option>
+                <option value="low">منخفض</option>
             </select>
 
             <div class="button-group">
-                <button title="add a new task" id="add_btn" type="button">Add</button>
-                <button title="undo last delete" id="undo_btn" type="button">Undo</button>
-                <button title="delete the last task in the list" id="delete_btn" type="button">Delete</button>
-                <button title="delete completed tasks" id="clear_btn" type="button">Clear</button>
-                <button title="edit the last task" id="edit_btn" type="button">Edit</button>
-                <button title="Export JSON" id="export_btn" type="button">Export</button>
+                <button title="أضف مهمة جديدة" id="add_btn" type="button">أضف</button>
+                <button title="تراجع عن آخر حذف" id="undo_btn" type="button">تراجع</button>
+                <button title="حذف آخر مهمة في القائمة" id="delete_btn" type="button">حذف</button>
+                <button title="مسح المهام المكتملة" id="clear_btn" type="button">مسح المكتملة</button>
+                <button title="تعديل آخر مهمة" id="edit_btn" type="button">تعديل</button>
+                <button title="تصدير JSON" id="export_btn" type="button">تصدير</button>
                 <input id="import_input" type="file" accept="application/json" style="display:none" />
-                <button title="Import JSON" id="import_btn" type="button">Import</button>
+                <button title="استيراد JSON" id="import_btn" type="button">استيراد</button>
             </div>
         </form>
 
@@ -49,23 +49,23 @@
          <section class="list-panel">
             <div class="list-controls">
                 <div class="filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="active">Active</button>
-                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="active">نشطة</button>
+                    <button class="filter-btn" data-filter="completed">مكتملة</button>
                 </div>
 
                 <div style="display:flex; gap:8px; align-items:center;">
-                    <label style="color:#cfc0ff; font-size:13px;">Priority</label>
-                    <select class="priority" id="priority_filter" title="Filter by priority">
-                        <option value="all">All</option>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
+                    <label style="color:#cfc0ff; font-size:13px;">الأولوية</label>
+                    <select class="priority" id="priority_filter" title="تصفية حسب الأولوية">
+                        <option value="all">الكل</option>
+                        <option value="high">عالي</option>
+                        <option value="medium">متوسط</option>
+                        <option value="low">منخفض</option>
                     </select>
                 </div>
 
                 <div class="counts">
-                    <span id="count_total">0</span> total • <span id="count_active">0</span> active • <span id="count_completed">0</span> completed • <span id="count_overdue">0</span> overdue • <span id="count_starred">0</span> starred
+                    <span id="count_total">0</span> إجمالي • <span id="count_active">0</span> نشطة • <span id="count_completed">0</span> مكتملة • <span id="count_overdue">0</span> متأخرة • <span id="count_starred">0</span> مميزة
                 </div>
 
                 <!-- <div style="display:flex; gap:8px; align-items:center;">

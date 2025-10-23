@@ -73,6 +73,23 @@ function uid() {
     return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 }
 
+// priority display helpers (Arabic)
+function priorityLabel(p) {
+    if (!p) return '';
+    if (p === 'high') return 'عالي';
+    if (p === 'medium') return 'متوسط';
+    if (p === 'low') return 'منخفض';
+    return p;
+}
+
+function priorityInitial(p) {
+    if (!p) return '';
+    if (p === 'high') return 'ع';
+    if (p === 'medium') return 'م';
+    if (p === 'low') return 'ن';
+    return p.charAt(0).toUpperCase();
+}
+
 // rendering
 function createTodoElement(todo) {
     const li = document.createElement("li");
@@ -91,13 +108,13 @@ function createTodoElement(todo) {
     const meta = document.createElement('div');
     meta.className = 'todo-meta';
     const parts = [];
-    if (todo.due) parts.push(`Due: ${formatDate(todo.due)}`);
-    if (todo.priority) parts.push(`Priority: ${todo.priority}`);
+    if (todo.due) parts.push(`تاريخ: ${formatDate(todo.due)}`);
+    if (todo.priority) parts.push(`الأولوية: ${priorityLabel(todo.priority)}`);
     meta.textContent = parts.join(' • ');
     // priority badge
     const badge = document.createElement('span');
     badge.className = `priority-badge ${todo.priority || 'medium'}`;
-    badge.textContent = (todo.priority || 'medium').slice(0,1).toUpperCase();
+    badge.textContent = priorityInitial(todo.priority || 'medium');
     // due label
     const dueLabel = relativeDueLabel(todo.due);
     if (dueLabel.label) {
@@ -287,9 +304,9 @@ function addTodo(text) {
 document.addEventListener('DOMContentLoaded', () => {
     loadTodos();
     renderList();
-    // random motivational word
+    // random motivational word (Arabic)
     const motivational_words_text = document.getElementById("motivational-words");
-    const motivational_words = ["Don't give up!", 'Stay focused!', 'One step at a time.'];
+    const motivational_words = ['لا تستسلم!', 'ابق مركزًا!', 'خطوة واحدة في كل مرة.'];
     const random_index = Math.floor(Math.random() * motivational_words.length);
     if (motivational_words_text) motivational_words_text.textContent = motivational_words[random_index];
 });
@@ -326,7 +343,7 @@ clear_btn.addEventListener("click", function () {
     // normal click: clear completed
     if (event && event.shiftKey) {
         // shift+click -> clear all with confirmation
-        if (confirm('Clear ALL tasks? This cannot be undone.')) {
+                if (confirm('هل تريد مسح كل المهام؟ لا يمكن التراجع عن هذا الإجراء.')) {
             todos = [];
             saveTodos();
             renderList();
@@ -434,7 +451,7 @@ if (import_input) import_input.addEventListener('change', (e) => {
                 saveTodos();
                 renderList();
             }
-        } catch (err) { console.error('Import failed', err); }
+        } catch (err) { console.error('فشل الاستيراد', err); alert('فشل الاستيراد: الملف غير صالح'); }
     };
     reader.readAsText(f);
 });

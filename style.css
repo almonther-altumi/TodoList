@@ -12,6 +12,24 @@ body {
   -moz-osx-font-smoothing:grayscale;
 }
 
+/* RTL adjustments */
+html[dir="rtl"] .todo-form { direction: rtl; }
+html[dir="rtl"] .filters { direction: rtl; }
+html[dir="rtl"] .list-controls { direction: rtl; }
+
+/* Mobile responsive tweaks */
+@media (max-width: 640px) {
+  .todo-form { flex-direction: column; gap:10px; padding: 12px; }
+  #search_input, #todo_input { width: 100%; }
+   #search_input {width: 50%;}
+  #due_date, .priority { width: 100%; }
+  .button-group { flex-wrap:wrap; gap:8px; justify-content:center; }
+  .list-controls { flex-direction: column; gap:10px; align-items:stretch; }
+  .counts { text-align: center; }
+  .todo-item { font-size:16px; padding:10px; }
+  footer { font-size:14px; }
+}
+
 h1 { text-align: center; margin: 18px 0 8px; color:#efe6ff; }
 
 .app-container {
@@ -119,7 +137,7 @@ footer { padding: 16px; background: transparent; color: #cfc0ff; position: fixed
 .email-icon { width:24px; height:24px; margin-right:8px; transition: all 0.3s ease; position:relative; top:6px; }
 .date-icon { width:24px; height:24px; margin-right:8px; transition: all 0.3s ease; }
 
-#search_input { width: 20%; padding-left: 20px; padding: 12px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); color: #efe6ff; display:block; outline:none; font-size:18px; }
+#search_input {  padding-left: 20px; padding: 12px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); color: #efe6ff; display:block; outline:none; font-size:18px; }
 
 .priority{
   color: #8b5cf6;
@@ -141,6 +159,7 @@ footer { padding: 16px; background: transparent; color: #cfc0ff; position: fixed
 @media (max-width:640px) {
   #todo_input { width: 90%; }
   .todo-item { font-size:16px; }
+  
 }
 
 
