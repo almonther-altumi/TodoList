@@ -1,294 +1,146 @@
-/* Reset الأنماط العامة */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* Dark black & purple theme */
+@import 'tailwindcss';
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* إعدادات الصفحة */
+html, body { height: 100%; }
 body {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #F1EFEC;
-  color: #030303;
+  background: linear-gradient(180deg,#0b0710,#120416 60%);
+  color: #e6e6fa; /* lavender */
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-h1 {
-  text-align: center;
-  margin: 20px 0;
+h1 { text-align: center; margin: 18px 0 8px; color:#efe6ff; }
+
+.app-container {
+  max-width: 900px;
+  margin: 28px auto 120px;
+  background: linear-gradient(180deg, rgba(20,8,32,0.6), rgba(16,6,28,0.65));
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(7,3,17,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* أنماط الأزرار */
-#add_btn, #edit_btn, #delete_btn, #clear_btn {
-  border:  0 solid black;
-  padding: 10px 20px;
-  color: black;
+.muted { color: #bdb2f5; text-align:center; margin: 10px; }
+
+/* Buttons */
+button, .filter-btn { font-weight:600;  }
+#add_btn, #edit_btn, #delete_btn, #clear_btn, #undo_btn, #clear_completed , #export_btn ,#import_btn{
+  border: 0;
+  padding: 10px 18px;
+  color: #0b0710;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 999px;
   margin-right: 8px;
-
-
-  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.128);
-  
+  box-shadow: 0 6px 18px rgba(48,15,60,0.45);
+  transition: all 0.4s;
 }
 
-/* #add_btn {
-  background-color: #69e26d;
+#add_btn { background: linear-gradient(90deg,#7c3aed,#a78bfa); color:#fff; }
+#add_btn:hover { transform: translateY(-1px); }
+
+#edit_btn { background: linear-gradient(90deg,#06b6d4,#4dd1e1); color:#fff; }
+#delete_btn { background: linear-gradient(90deg,#ef4444,#ff7b7b); color:#fff; }
+#clear_btn { background: linear-gradient(90deg,#f97316,#ffb56b); color:#fff; }
+#undo_btn { background: linear-gradient(90deg,#8b5cf6,#c4b5fd); color:#fff; }
+#export_btn { background: linear-gradient(90deg,#10b981,#6ee7b7); color:#fff; }
+#import_btn { background: linear-gradient(90deg,#e6e217,#81d42e); color:#fff; }
+#clear_completed { background: linear-gradient(90deg,#ef4444,#ff9a9a); color:#fff; }
+
+#add_btn:hover, #edit_btn:hover, #delete_btn:hover, #clear_btn:hover, #undo_btn:hover, .filter-btn:hover ,#export_btn:hover , #import_btn:hover { opacity:0.95; transform: translateY(-5px); }
+
+
+
+
+/* List and controls */
+#todo_list { background: transparent; color: #e6e6fa; padding: 6px 0; border-radius: 6px; }
+#todo_list h2 { text-align:center; padding: 8px 0; color:#efe6ff; }
+
+li { list-style:none; }
+.todo-item {
+  display:flex; gap:12px; align-items:center; padding:12px 14px; margin:8px 0;
+  border-radius:10px; background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(120,60,200,0.12);
 }
+.todo-item.overdue { box-shadow: 0 6px 20px rgba(255,64,129,0.06), inset 0 0 0 1px rgba(255,64,129,0.04); border-color: rgba(255,64,129,0.14); }
+.priority-badge { display:inline-block; margin-left:6px; padding:4px 8px; border-radius:8px; font-size:12px; font-weight:700; }
+.priority-badge.high { background: linear-gradient(90deg,#ef4444,#fb7185); color:white; }
+.priority-badge.medium { background: linear-gradient(90deg,#6d28d9,#9f7aea); color:white; }
+.priority-badge.low { background: linear-gradient(90deg,#10b981,#6ee7b7); color:#04201a; }
+.fav-btn { font-size:18px; color:#cfc0ff; background:transparent; border:none; }
+.fav-btn.starred { color:#ffd166; text-shadow: 0 2px 8px rgba(255,209,102,0.12); }
 
-#edit_btn {
-  background-color: #68d9ff;
-}
+/* add/remove animations */
+.todo-item { animation: fadeIn 220ms ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
 
-#delete_btn {
-  background-color: #f44336;
-}
+.todo-item.removing { animation: fadeOut 260ms ease both; }
+@keyframes fadeOut { from { opacity:1; transform: translateY(0);} to { opacity:0; transform: translateY(-8px);} }
 
-#clear_btn {
-  background-color: #f86d63;
-} */
+/* due labels */
+.due-label { display:inline-block; margin-left:8px; padding:4px 8px; border-radius:6px; font-size:12px; font-weight:700; }
+.due-today { background: linear-gradient(90deg,#f59e0b,#f97316); color:#111827; }
+.due-tomorrow { background: linear-gradient(90deg,#60a5fa,#3b82f6); color:#fff; }
+.due-overdue { background: linear-gradient(90deg,#ef4444,#fb7185); color:#fff; box-shadow: 0 6px 18px rgba(239,68,68,0.12); }
+.due-soon { background: linear-gradient(90deg,#f472b6,#fb7185); color:#111827; }
+.todo-text { flex: 1 1 auto; font-size: 18px; color:#efe6ff; }
+.todo-meta { font-size: 12px; color:#bdb2f5; margin-left: 8px; }
 
-#add_btn:hover, #edit_btn:hover, #delete_btn:hover, #clear_btn:hover, .delete-item:hover {
-  box-shadow: 1px 2px 1px 1px rgba(1, 1, 1, 0.042);
-  
-}
+.list-panel { margin-top: 12px; }
+.list-controls { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:12px; }
 
-/* أنماط قائمة المهام */
-#todo_list {
-  background-color: #D4C9BE;
-  color: white;
+.filters { display:flex; gap:8px; }
+.filter-btn { padding:8px 12px; border-radius:12px; border:none; background:transparent; color:#cfc0ff; cursor:pointer; }
+.filter-btn.active { background: linear-gradient(90deg,#6d28d9,#9f7aea); color:white; box-shadow: 0 6px 18px rgba(79,40,150,0.25); transform: translateY(-1px); }
+
+.counts { color:#d9d3ff; font-weight:600; }
+
+.checkbox { cursor:pointer; width:20px; height:20px; appearance:none; -webkit-appearance:none; border-radius:6px; border:1px solid rgba(255,255,255,0.12); background:transparent; position:relative; }
+.checkbox:checked { background: linear-gradient(90deg,#9963f6,#c4b5fd); border:none; box-shadow: 0 6px 14px rgba(124,58,237,0.25); }
+
+#item_list { padding:0; margin: 12px auto; width: 100%; }
+
+.deleteIcon_listItem, .editIcon_listItem { filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); transition: all 0.18s ease; }
+.deleteBtn_listItem, .editBtn_listItem { padding:8px; margin-left: 6px; background:transparent; border:none; cursor:pointer; }
+.deleteBtn_listItem:hover .deleteIcon_listItem { filter: invert(16%) sepia(94%) saturate(5000%) hue-rotate(-5deg) brightness(90%) contrast(100%); transform: rotate(-6deg); }
+.editBtn_listItem:hover .editIcon_listItem { filter: invert(48%) sepia(91%) saturate(500%) hue-rotate(90deg) brightness(90%) contrast(100%); transform: rotate(6deg); }
+
+#todo_input { width: 60%; padding-left: 20px; padding: 12px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); color: #efe6ff; display:block; outline:none; font-size:18px; }
+.todo-form { display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; }
+
+.button-group { justify-content:center; display:flex; margin: 20px 0; padding: 12px; border-radius:12px; }
+
+footer { padding: 16px; background: transparent; color: #cfc0ff; position: fixed; bottom: 0; width: 100%; left: 0; }
+
+.email-text { display:inline-block; font-size:14px; color:#b9b0ff; }
+.email-icon { width:24px; height:24px; margin-right:8px; transition: all 0.3s ease; position:relative; top:6px; }
+.date-icon { width:24px; height:24px; margin-right:8px; transition: all 0.3s ease; }
+
+#search_input { width: 20%; padding-left: 20px; padding: 12px 18px; border-radius:999px; border:1px solid rgba(255,255,255,0.04); background: rgba(255,255,255,0.02); color: #efe6ff; display:block; outline:none; font-size:18px; }
+
+.priority{
+  color: #8b5cf6;
+  background-color: #1a0420;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 15px;
+  padding: 5px;
 }
 
-#todo_list h2 { /*the title of the tasks list*/
-  text-align: center;
-  padding: 10px;
-  color: #030303;
-}
-
-/* أنماط العناصر الفردية في القائمة */
-li {
-  background-color: #123458;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px 5px;
-  display: flex;
-  align-items: center;
-  font-size: 20px;
-
-}
-
-.checkbox {
-  
-  margin-left: 10px;
-  margin-right: 20px;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #4CAF50; /* لون الحدود */
-  border-radius: 50px;
-  background-color: #4CAF50; /* لون الخلفية عند التحديد */
-
-}
-
-.checkbox:checked {
-  background-color: #4CAF50; /* لون الخلفية عند التحديد */
-  border-radius: 5px;
-  cursor: pointer;
-  animation: checkmark 0.3s ease-in-out; /* تطبيق الأنيميشن */
-}
-
-/*the animation for checkbox*/
-@keyframes checkmark {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* أنماط قائمة العناصر */
-#item_list { /*  the background of the list*/
-  list-style-type: none;
-  padding: 0;
-  margin: 20px auto;
-  width: 80%;
-}
-
-/* أنماط زر الحذف داخل العناصر */
-.deleteIcon_listItem {
-    border: none;
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    background-color: transparent; /* جعل الخلفية شفافة */
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); /* اللون الأبيض */
-    transition: all 0.3s ease; /* إضافة تأثير الانتقال */
-}
-
-
-.deleteBtn_listItem {
-
-    padding: 10px;
-    margin-left: auto;
-    background-color: transparent; /* جعل خلفية الزر شفافة */
-    border: none;
-    cursor: pointer;
-}
-
-.deleteBtn_listItem:hover .deleteIcon_listItem {
-
-    filter: invert(16%) sepia(94%) saturate(5000%) hue-rotate(-5deg) brightness(90%) contrast(100%); /* اللون الأحمر */
-    animation: moveDiagonal 0.5s ease-in-out ; /* تطبيق الأنيميشن */
-}
-
-/* تعريف الأنيميشن */
-@keyframes moveDiagonal {
-    0% {
-        transform: rotate(0deg); /* الوضع الافتراضي */
-    }
-    25% {
-        transform: rotate(15deg); /* الدوران 15 درجة إلى اليمين */
-    }
-    50% {
-        transform: rotate(0deg); /* العودة للوضع الافتراضي */
-    }
-    75% {
-        transform: rotate(-15deg); /* الدوران 15 درجة إلى اليسار */
-    }
-    100% {
-        transform: rotate(0deg); /* العودة للوضع الافتراضي */
-    }
-}
-
-.editIcon_listItem {
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    background-color: transparent; /* جعل الخلفية شفافة */
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%); /* اللون الأبيض */
-    transition: all 0.3s ease; /* إضافة تأثير الانتقال */
-}
-.editBtn_listItem {
-    padding: 10px;
-    background-color: transparent; /* جعل خلفية الزر شفافة */
-    border: none;
-    cursor: pointer;
-}
-.editBtn_listItem:hover .editIcon_listItem {
-    filter: invert(48%) sepia(91%) saturate(500%) hue-rotate(90deg) brightness(90%) contrast(100%); /* اللون الأخضر */
-    animation: moveDiagonal 0.5s ease-in-out ; /* تطبيق الأنيميشن */
-}
-
-
-#todo_input
-{
-    width: 50%;
-    padding-left: 20px;
-    padding: 10px 20px;
-    margin: 10px auto;
-    border-radius: 20px;
-    border: none;
-    background-color: #D4C9BE;
-    color: #123458;
-    display: block;
-
-    outline: none;
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 50px;
-}
-.button-group
-{
-    justify-content: center;
-    display: flex;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.128);
-    
-    
-}
-
-footer {
-  padding: 20px;
-  background-color: #D4C9BE;
-  color: black;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-.email-text
-{
-  display: inline-block;
-  font-size: 19px;
-
-  margin-right: 40%;
-
-
-
-}
-.email-icon
-{
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  transition: all 0.3s ease; /* إضافة تأثير الانتقال */ 
-  position: relative;
-  top: 8px; /* ضبط الموضع العمودي */
-}
-.email-icon:hover {
-  animation: emailIconRotate 1.5s ease; /* زيادة مدة الأنيميشن إلى 1.5 ثانية */
-}
-
-@keyframes emailIconRotate {
- 
-  0% {
-    transform: rotate(0deg); /* الوضع الافتراضي */
-  }
-  25% {
-    transform: rotate(15deg); /* الدوران 15 درجة إلى اليمين */
-  }
-  50% {
-    transform: rotate(-15deg); /* الدوران 15 درجة إلى اليسار */
-  }
-  75% {
-    transform: rotate(-15deg); /* الدوران 15 درجة إلى اليسار */
-  }
-  100% {
-    transform: rotate(0deg); /* العودة للوضع الافتراضي */
-  }
+#due_date{
+  border-radius: 15px;
+  padding: 5px;
+  border: none;
+  color: #8b5cf6;
+  background-color: #1a0420;
   
 }
-
-.date-icon
-{
-  display: inline-block;
-
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  transition: all 0.3s ease; /* إضافة تأثير الانتقال */
-  position: absolute;
-  right: 115px; /* ضبط الموضع الأفقي */
-  bottom: 21px; /* ضبط الموضع العمودي */
-}
-.date-icon:hover {
-  animation: emailIconRotate 1.5s ease; /* زيادة مدة الأنيميشن إلى 1.5 ثانية */
+/* small screens */
+@media (max-width:640px) {
+  #todo_input { width: 90%; }
+  .todo-item { font-size:16px; }
 }
 
-.date-text
-{
-  display: inline-block;
-  font-size: 19px;
-  right: 20px;
-  bottom: 25px; /* ضبط الموضع العمودي */
-  position: absolute;
- 
-}
+
