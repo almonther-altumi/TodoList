@@ -53,7 +53,7 @@ function loadTodos() {
 }
 
 // give a readable relative label for due dates
-function relativeDueLabel(due) {
+function relativeDueLabel(due) { 
     if (!due) return { label: '', cls: '' };
     try {
         const d = new Date(due);
@@ -61,10 +61,10 @@ function relativeDueLabel(due) {
         const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         const diff = Math.floor((d - today) / (1000 * 60 * 60 * 24));
         if (isNaN(diff)) return { label: '', cls: '' };
-        if (diff < 0) return { label: 'Overdue', cls: 'due-overdue' };
-        if (diff === 0) return { label: 'Today', cls: 'due-today' };
-        if (diff === 1) return { label: 'Tomorrow', cls: 'due-tomorrow' };
-        if (diff <= 7) return { label: `In ${diff}d`, cls: 'due-soon' };
+        if (diff < 0) return { label: 'متأخر', cls: 'due-overdue' };
+        if (diff === 0) return { label: 'اليوم', cls: 'due-today' };
+        if (diff === 1) return { label: 'غدًا', cls: 'due-tomorrow' };
+        if (diff <= 7) return { label: `في ${diff}d`, cls: 'due-soon' };
         return { label: '', cls: '' };
     } catch (e) { return { label: '', cls: '' }; }
 }
